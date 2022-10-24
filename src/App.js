@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { useState } from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import "./index.css";
+import DetailPage from "./notekeeper/DetailPage";
+import CreateNote from "./notekeeper/component/CreateNote";
+import Main from "./notekeeper/Main";
+import NoMatch from "./notekeeper/NoMatch";
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Switch>
+      <Route exact path='/'>
+        <Main />
+      </Route>
+      <Route path="/create">
+        <CreateNote />
+      </Route>
+      <Route path="/notes/:noteId">
+        <DetailPage />
+      </Route>
+      <Route path="*">
+        <NoMatch />
+      </Route>
+    </Switch>
+  )
 }
 
-export default App;
